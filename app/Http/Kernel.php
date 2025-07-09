@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 class Kernel extends HttpKernel
 {
     /**
-<<<<<<< HEAD
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
@@ -20,27 +19,14 @@ class Kernel extends HttpKernel
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-=======
-     * Global HTTP middleware stack.
-     *
-     * These middleware are run during every request to your application.
-     */
-    protected $middleware = [
-        \Illuminate\Http\Middleware\HandleCors::class,
-        \App\Http\Middleware\TrustProxies::class,
-        \Illuminate\Http\Middleware\ValidatePostSize::class,
->>>>>>> fd41b24 (Controller)
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
     /**
      * The application's route middleware groups.
-<<<<<<< HEAD
      *
      * @var array<string, array<int, class-string|string>>
-=======
->>>>>>> fd41b24 (Controller)
      */
     protected $middlewareGroups = [
         'web' => [
@@ -53,18 +39,13 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-<<<<<<< HEAD
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-=======
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class, // Uncomment jika pakai Sanctum SPA
->>>>>>> fd41b24 (Controller)
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
     /**
-<<<<<<< HEAD
      * The application's middleware aliases.
      *
      * Aliases may be used instead of class names to conveniently assign middleware to routes and groups.
@@ -72,11 +53,6 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-=======
-     * The application's route middleware.
-     */
-    protected $routeMiddleware = [
->>>>>>> fd41b24 (Controller)
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -85,11 +61,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
-<<<<<<< HEAD
         'signed' => \App\Http\Middleware\ValidateSignature::class,
-=======
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
->>>>>>> fd41b24 (Controller)
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];

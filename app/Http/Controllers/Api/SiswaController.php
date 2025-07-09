@@ -11,12 +11,12 @@ class SiswaController extends Controller
     public function index()
     {
         // Jika frontend butuh data terurut terbaru
-        $siswas = Siswa::orderBy('created_at', 'desc')->get();
+        $siswa = Siswa::orderBy('created_at', 'desc')->get();
 
         // Jika frontend butuh format tertentu, bisa diubah di sini
         return response()->json([
             'success' => true,
-            'data' => $siswas
+            'data' => $siswa
         ]);
     }
 
@@ -24,7 +24,7 @@ class SiswaController extends Controller
     {
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
-            'nisn' => 'required|unique:siswas,nisn',
+            'nisn' => 'required|unique:siswa,nisn',
             'jk' => 'required|in:L,P',
             'tanggal_lahir' => 'required|date',
             'alamat' => 'required|string',
