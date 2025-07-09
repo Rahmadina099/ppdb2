@@ -2,8 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SiswaController;
+use App\Models\Siswa;
+
+use function response;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +28,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Dashboard data untuk frontend
     Route::get('/dashboard', function () {
         return response()->json([
-            'jumlah' => \App\Models\Siswa::count(),
-            'diterima' => \App\Models\Siswa::where('status', 'diterima')->count(),
-            'ditolak' => \App\Models\Siswa::where('status', 'ditolak')->count(),
+            'jumlah' => Siswa::count(),
+            'diterima' => Siswa::where('status', 'diterima')->count(),
+            'ditolak' => Siswa::where('status', 'ditolak')->count(),
         ]);
     });
-
-    // Data siswa (list dan tambah)
-    Route::get('/siswa', [SiswaController::class, 'index']);
-    Route::post('/siswa', [SiswaController::class, 'store']);
 });
+
+// Data siswa (list dan tambah)
+Route::get('/siswa', [SiswaController::class, 'index']);
+Route::post('/siswa', [SiswaController::class, 'store']);

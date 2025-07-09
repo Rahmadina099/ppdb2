@@ -1,6 +1,42 @@
 <?php
 
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
+if (!class_exists('Str')) {
+    class Str {
+        public static function slug($title, $separator = '-') {
+            $title = preg_replace('~[^\pL\d]+~u', $separator, $title);
+            $title = iconv('utf-8', 'us-ascii//TRANSLIT', $title);
+            $title = preg_replace('~[^-\w]+~', '', $title);
+            $title = trim($title, $separator);
+            $title = preg_replace('~-+~', $separator, $title);
+            $title = strtolower($title);
+            return empty($title) ? 'n-a' : $title;
+        }
+    }
+}
+
+if (!function_exists('storage_path')) {
+    /**
+     * Get the path to the storage folder.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    function storage_path($path = '')
+    {
+        return __DIR__ . '/../storage' . ($path ? DIRECTORY_SEPARATOR . $path : $path);
+    }
+}
+
+if (!function_exists('env')) {
+    function env($key, $default = null) {
+        $value = getenv($key);
+        if ($value === false) {
+            return $default;
+        }
+        return $value;
+    }
+}
 
 return [
     /*
