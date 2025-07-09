@@ -1,43 +1,27 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
-route::get('dashboard',[DashboardController::class,
-'index'])->name('dashboard');
-route::get('login',[AuthController::class,
-'login'])->name('login');
-route::get('user',[UserController::class,
-'index'])->name('user');
-=======
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SiswaController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
 
-
+// Endpoint login
 Route::post('/login', [AuthController::class, 'login']);
 
+// Endpoint yang membutuhkan autentikasi
 Route::middleware('auth:sanctum')->group(function () {
+    // Dashboard data untuk frontend
     Route::get('/dashboard', function () {
         return response()->json([
             'jumlah' => \App\Models\Siswa::count(),
@@ -46,8 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
 
+    // Data siswa (list dan tambah)
     Route::get('/siswa', [SiswaController::class, 'index']);
     Route::post('/siswa', [SiswaController::class, 'store']);
 });
-?>
->>>>>>> fd41b24 (Controller)
